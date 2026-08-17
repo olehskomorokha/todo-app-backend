@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TodoApp.Data.Entities;
-using Task = TodoApp.Data.Entities.Task;
 
 namespace TodoApp.Data;
 
@@ -12,11 +11,11 @@ public class AppDbContext : DbContext
     }
     
     public DbSet<Category> Categories { get; set; }
-    public DbSet<Task> Tasks { get; set; }
+    public DbSet<TaskToDo> Tasks { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Task>()
+        modelBuilder.Entity<TaskToDo>()
             .HasKey(t => t.Id);
     }
 }
