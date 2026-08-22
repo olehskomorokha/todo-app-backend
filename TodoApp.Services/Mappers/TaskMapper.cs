@@ -25,6 +25,7 @@ public static class TaskMapper
         return new TaskToDo()
         {
             CategoryId = model.CategoryId,
+            UserId = model.UserId,
             Name = model.Name,
             Description = model.Description,
             Deadline = model.Deadline,

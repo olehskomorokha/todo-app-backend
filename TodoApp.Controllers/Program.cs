@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddProblemDetails();
+builder.Services.AddSwaggerGen();
 
 // register database
 builder.Services.AddDbContext<AppDbContext>(options =>

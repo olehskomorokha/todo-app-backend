@@ -26,17 +26,17 @@ public class TaskService : ITaskService
         return tasks.Select(TaskMapper.MapToTaskDto).ToList();
     }
 
-    public async Task AddAsync(AddTaskDto model)
+    public async Task AddAsync(AddTaskDto taskDto)
     {
-        if (model == null)
+        if (taskDto == null)
         {
-            throw new ArgumentNullException(nameof(model));
+            throw new ArgumentNullException(nameof(taskDto));
         }
 
-        await _taskRepository.AddAsync(TaskMapper.MapToAddTask(model));
+        await _taskRepository.AddAsync(TaskMapper.MapToAddTask(taskDto));
     }
 
-    public async Task UpdateAsync(int id, UpdateTaskDto model)
+    public async Task UpdateAsync(int id, UpdateTaskDto taskDto)
     {
         var modelToUpdate = await _taskRepository.GetByIdAsync(id);
         if (modelToUpdate == null)
@@ -44,34 +44,34 @@ public class TaskService : ITaskService
             throw new KeyNotFoundException($"Task with id {id} was not found.");
         }
 
-        if (model.Deadline != null)
+        if (taskDto.Deadline != null)
         {
-            modelToUpdate.Deadline = model.Deadline.Value;
+            modelToUpdate.Deadline = taskDto.Deadline.Value;
         }
 
-        if (model.Remind != null)
+        if (taskDto.Remind != null)
         {
-            modelToUpdate.Remind = model.Remind.Value;
+            modelToUpdate.Remind = taskDto.Remind.Value;
         }
 
-        if (model.IsFinished != null)
+        if (taskDto.IsFinished != null)
         {
-            modelToUpdate.IsFinished = model.IsFinished.Value;
+            modelToUpdate.IsFinished = taskDto.IsFinished.Value;
         }
 
-        if (model.Description != null)
+        if (taskDto.Description != null)
         {
-            modelToUpdate.Description = model.Description;
+            modelToUpdate.Description = taskDto.Description;
         }
 
-        if (model.Name != null)
+        if (taskDto.Name != null)
         {
-            modelToUpdate.Name = model.Name;
+            modelToUpdate.Name = taskDto.Name;
         }
 
-        if (model.CategoryId != null)
+        if (taskDto.CategoryId != null)
         {
-            modelToUpdate.CategoryId = model.CategoryId.Value;
+            modelToUpdate.CategoryId = taskDto.CategoryId.Value;
         }
 
         await _taskRepository.UpdateAsync(modelToUpdate);
