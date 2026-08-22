@@ -24,26 +24,26 @@ public class TaskRepository : ITaskRepository
         return await _context.Tasks.FindAsync(id);
     }
 
-    public async Task<List<TaskToDo>> GetByPageAsync(int items, int page)
+    public async Task<List<TaskToDo>> GetByPageAsync(int page, int itemsCount)
     {
-        return await _context.Tasks.Skip((page - 1) * items).Take(items).ToListAsync();
+        return await _context.Tasks.Skip((page - 1) * itemsCount).Take(itemsCount).ToListAsync();
     }
 
-    public async Task AddAsync(TaskToDo model)
+    public async Task AddAsync(TaskToDo task)
     {
-        await _context.Tasks.AddAsync(model);
+        await _context.Tasks.AddAsync(task);
         await _context.SaveChangesAsync();
     }
 
-    public async Task UpdateAsync(TaskToDo model)
+    public async Task UpdateAsync(TaskToDo task)
     {
-        _context.Tasks.Update(model);
+        _context.Tasks.Update(task);
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeleteAsync(TaskToDo model)
+    public async Task DeleteAsync(TaskToDo task)
     {
-        _context.Tasks.Remove(model);
+        _context.Tasks.Remove(task);
         await _context.SaveChangesAsync();
     }
 }

@@ -4,5 +4,5 @@ namespace TodoApp.Interfaces.Interfaces;
 
 public interface ITaskRepository : ICrud<TaskToDo>
 {
-    public Task<List<TaskToDo>> GetByPageAsync(int items, int page);
+    public Task<List<TaskToDo>> GetByPageAsync(int page, int itemsCount);
 }

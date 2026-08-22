@@ -1,4 +1,5 @@
 ﻿using TodoApp.Interfaces.Interfaces;
+using TodoApp.Services.Exceptions;
 using TodoApp.Services.Interfaces;
 using TodoApp.Services.Mappers;
 using TodoApp.Services.Models.Task;
@@ -20,9 +21,9 @@ public class TaskService : ITaskService
         return TaskMapper.MapToTaskDto(task);
     }
 
-    public async Task<List<TaskDto>> GetByPageAsync(int items, int page)
+    public async Task<List<TaskDto>> GetByPageAsync(int page, int itemsCount )
     {
-        var tasks = await _taskRepository.GetByPageAsync(items, page);
+        var tasks = await _taskRepository.GetByPageAsync(page, itemsCount);
         return tasks.Select(TaskMapper.MapToTaskDto).ToList();
     }
 
@@ -33,6 +34,21 @@ public class TaskService : ITaskService
             throw new ArgumentNullException(nameof(taskDto));
         }
 
+        if (taskDto.UserId != null)
+        {
+            throw new TaskException("Task creation failed.", "User is not initialized.");
+        }
+
+        if (taskDto.Deadline <= DateTime.Now || taskDto.Remind <= DateTime.Now)
+        {
+            throw new TaskException("Task creation failed.", "Deadline or Remind must be in the future.");
+        }
+
+        if (taskDto.Remind >= taskDto.Deadline)
+        {
+            throw new TaskException("Task creation failed.", "Reminder must be shorter than the due date");
+        }
+        
         await _taskRepository.AddAsync(TaskMapper.MapToAddTask(taskDto));
     }
 

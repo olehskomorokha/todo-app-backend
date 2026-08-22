@@ -15,13 +15,12 @@ public class TaskController : ControllerBase
         _taskService = taskService;
     }
 
-    [HttpGet("{pageId},{pageSize}")]
-
-    public async Task<IActionResult> GetAllAsync(int pageId, int pageSize)
+    [HttpGet("{page},{itemsCount}")]
+    public async Task<IActionResult> GetByPageAsync(int page, int itemsCount)
     {
-        return Ok(await _taskService.GetByPageAsync(pageId, pageSize));
+        return Ok(await _taskService.GetByPageAsync(page, itemsCount));
     }
-    
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetByIdAsync(int id)
     {

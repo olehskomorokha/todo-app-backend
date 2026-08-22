@@ -9,7 +9,7 @@ namespace TodoApp.Controllers.Controllers;
 public class UserController : ControllerBase
 {
     private readonly IUserService _userService;
-    
+
     public UserController(IUserService userService)
     {
         _userService = userService;
@@ -20,7 +20,7 @@ public class UserController : ControllerBase
     {
         return Ok(await _userService.GetAllAsync());
     }
-    
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetByIdAsync(int id)
     {
