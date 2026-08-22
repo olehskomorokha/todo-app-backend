@@ -41,5 +41,4 @@ public class TaskRepository : ITaskRepository
         _context.Tasks.Remove(model);
         await _context.SaveChangesAsync();
     }
-    
 }

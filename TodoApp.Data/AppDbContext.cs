@@ -9,7 +9,7 @@ public class AppDbContext : DbContext
         : base(options)
     {
     }
-    
+
     public DbSet<Category> Categories { get; set; }
     public DbSet<TaskToDo> Tasks { get; set; }
 
