@@ -15,7 +15,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
-var app = builder.Build();
+
 
 // register services
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
@@ -23,6 +23,8 @@ builder.Services.AddScoped<ITaskService, TaskService>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+
+var app = builder.Build();
 
 app.MapControllers();
 

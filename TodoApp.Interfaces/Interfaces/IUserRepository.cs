@@ -4,9 +4,9 @@ namespace TodoApp.Interfaces.Interfaces;
 
 public interface IUserRepository
 {
-    Task<User> GetByIdAsync(int userId);
-    Task<List<User>> GetAllAsync();
-    Task AddAsync(User model);
-    Task UpdateAsync(User model);
-    Task DeleteAsync(User model);
+    public Task<User> GetByIdAsync(int userId);
+    public Task<List<User>> GetAllAsync();
+    public Task AddAsync(User model);
+    public Task UpdateAsync(User model);
+    public Task DeleteAsync(User model);
 }

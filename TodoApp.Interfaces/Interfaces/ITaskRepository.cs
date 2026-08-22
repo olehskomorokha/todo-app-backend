@@ -4,13 +4,13 @@ namespace TodoApp.Interfaces.Interfaces;
 
 public interface ITaskRepository
 {
-    Task<TaskToDo> GetByIdAsync(int id);
+    public Task<TaskToDo> GetByIdAsync(int id);
 
-    Task<List<TaskToDo>> GetAllAsync(int items, int page);
+    public Task<List<TaskToDo>> GetAllAsync(int items, int page);
 
-    Task AddAsync(TaskToDo model);
+    public Task AddAsync(TaskToDo model);
+ 
+    public Task UpdateAsync(TaskToDo model);
 
-    Task UpdateAsync(TaskToDo model);
-
-    Task DeleteAsync(TaskToDo model);
+    public Task DeleteAsync(TaskToDo model);
 }
