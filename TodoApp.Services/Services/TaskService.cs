@@ -1,10 +1,11 @@
 ﻿using TodoApp.Interfaces.Interfaces;
+using TodoApp.Services.Interfaces;
 using TodoApp.Services.Mappers;
 using TodoApp.Services.Models.Task;
 
 namespace TodoApp.Services.Services;
 
-public class TaskService
+public class TaskService : ITaskService
 {
     private readonly ITaskRepository _taskRepository;
 
