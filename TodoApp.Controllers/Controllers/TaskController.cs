@@ -19,7 +19,7 @@ public class TaskController : ControllerBase
 
     public async Task<IActionResult> GetAllAsync(int pageId, int pageSize)
     {
-        return Ok(await _taskService.GetAllAsync(pageId, pageSize));
+        return Ok(await _taskService.GetByPageAsync(pageId, pageSize));
     }
     
     [HttpGet("{id}")]

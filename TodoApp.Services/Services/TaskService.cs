@@ -20,9 +20,9 @@ public class TaskService : ITaskService
         return TaskMapper.MapToTaskDto(task);
     }
 
-    public async Task<List<TaskDto>> GetAllAsync(int items, int page)
+    public async Task<List<TaskDto>> GetByPageAsync(int items, int page)
     {
-        var tasks = await _taskRepository.GetAllAsync(items, page);
+        var tasks = await _taskRepository.GetByPageAsync(items, page);
         return tasks.Select(TaskMapper.MapToTaskDto).ToList();
     }
 

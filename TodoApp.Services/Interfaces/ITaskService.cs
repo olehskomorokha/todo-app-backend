@@ -6,7 +6,7 @@ public interface ITaskService
 {
     public Task<TaskDto> GetByIdAsync(int id);
 
-    public Task<List<TaskDto>> GetAllAsync(int items, int page);
+    public Task<List<TaskDto>> GetByPageAsync(int items, int page);
 
     public Task AddAsync(AddTaskDto taskDto);
 

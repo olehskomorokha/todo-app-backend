@@ -14,12 +14,17 @@ public class TaskRepository : ITaskRepository
         _context = context;
     }
 
+    public Task<List<TaskToDo>> GetAllAsync()
+    {
+        return _context.Tasks.ToListAsync();
+    }
+
     public async Task<TaskToDo> GetByIdAsync(int id)
     {
         return await _context.Tasks.FindAsync(id);
     }
 
-    public async Task<List<TaskToDo>> GetAllAsync(int items, int page)
+    public async Task<List<TaskToDo>> GetByPageAsync(int items, int page)
     {
         return await _context.Tasks.Skip((page - 1) * items).Take(items).ToListAsync();
     }
