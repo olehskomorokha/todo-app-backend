@@ -8,9 +8,9 @@ public interface ITaskService
 
     public Task<List<TaskDto>> GetAllAsync(int items, int page);
 
-    public Task AddAsync(AddTaskDto model);
+    public Task AddAsync(AddTaskDto taskDto);
 
-    public Task UpdateAsync(int id, UpdateTaskDto model);
+    public Task UpdateAsync(int id, UpdateTaskDto taskDto);
 
     public Task DeleteAsync(int id);
 }

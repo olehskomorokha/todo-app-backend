@@ -16,7 +16,7 @@ public class TaskRepository : ITaskRepository
 
     public async Task<TaskToDo> GetByIdAsync(int id)
     {
-        return await _context.Tasks.FirstOrDefaultAsync(x => x.Id == id);
+        return await _context.Tasks.FindAsync(id);
     }
 
     public async Task<List<TaskToDo>> GetAllAsync(int items, int page)
