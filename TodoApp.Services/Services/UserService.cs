@@ -1,4 +1,8 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using TodoApp.Interfaces.Interfaces;
+using TodoApp.Services.Exceptions;
+using TodoApp.Services.Helpers;
 using TodoApp.Services.Interfaces;
 using TodoApp.Services.Mappers;
 using TodoApp.Services.Models.User;
@@ -8,9 +12,11 @@ namespace TodoApp.Services.Services;
 public class UserService : IUserService
 {
     private readonly IUserRepository _userRepository;
+    private readonly IConfiguration _configuration;
 
-    public UserService(IUserRepository userRepository)
+    public UserService(IUserRepository userRepository, IConfiguration configuration)
     {
+        _configuration = configuration;
         _userRepository = userRepository;
     }
 
@@ -27,7 +33,8 @@ public class UserService : IUserService
 
     public async Task AddAsync(AddUserDto userDto)
     {
-        await _userRepository.AddAsync(UserMapper.MapToAddUser(userDto));
+        var user = UserMapper.MapToAddUser(userDto);
+        await _userRepository.AddAsync(user);
     }
 
     public async Task UpdateAsync(int id, UpdateUserDto userDto)

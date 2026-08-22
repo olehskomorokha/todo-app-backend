@@ -18,5 +18,7 @@ public class AppDbContext : DbContext
     {
         modelBuilder.Entity<TaskToDo>()
             .HasKey(t => t.Id);
+        modelBuilder.Entity<User>().HasIndex(x => x.Email)
+            .IsUnique();
     }
 }

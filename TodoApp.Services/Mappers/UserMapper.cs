@@ -1,4 +1,5 @@
 using TodoApp.Data.Entities;
+using TodoApp.Services.Helpers;
 using TodoApp.Services.Models.User;
 
 namespace TodoApp.Services.Mappers;
@@ -22,7 +23,7 @@ public static class UserMapper
         {
             Email = userDto.Email,
             Username = userDto.Username,
-            Password = userDto.Password,
+            Password = PasswordHashHelper.HashPassword(userDto.Password),
         };
     }
 }

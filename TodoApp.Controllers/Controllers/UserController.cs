@@ -9,9 +9,11 @@ namespace TodoApp.Controllers.Controllers;
 public class UserController : ControllerBase
 {
     private readonly IUserService _userService;
+    private readonly IJwtService _jwtService;
 
-    public UserController(IUserService userService)
+    public UserController(IUserService userService, IJwtService jwtService)
     {
+        _jwtService = jwtService;
         _userService = userService;
     }
 
@@ -46,5 +48,12 @@ public class UserController : ControllerBase
     {
         await _userService.DeleteAsync(id);
         return Ok();
+    }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> LoginAsync(LoginUserDto userDto)
+    {
+        var token = await _jwtService.Authenticate(userDto);
+        return Ok(token);
     }
 }

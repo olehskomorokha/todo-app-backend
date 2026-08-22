@@ -21,7 +21,7 @@ public class TaskService : ITaskService
         return TaskMapper.MapToTaskDto(task);
     }
 
-    public async Task<List<TaskDto>> GetByPageAsync(int page, int itemsCount )
+    public async Task<List<TaskDto>> GetByPageAsync(int page, int itemsCount)
     {
         var tasks = await _taskRepository.GetByPageAsync(page, itemsCount);
         return tasks.Select(TaskMapper.MapToTaskDto).ToList();
@@ -36,19 +36,19 @@ public class TaskService : ITaskService
 
         if (taskDto.UserId != null)
         {
-            throw new TaskException("Task creation failed.", "User is not initialized.");
+            throw new TaskException("Task_creation_failed.", "User is not initialized.");
         }
 
         if (taskDto.Deadline <= DateTime.Now || taskDto.Remind <= DateTime.Now)
         {
-            throw new TaskException("Task creation failed.", "Deadline or Remind must be in the future.");
+            throw new TaskException("Task_creation_failed.", "Deadline or Remind must be in the future.");
         }
 
         if (taskDto.Remind >= taskDto.Deadline)
         {
-            throw new TaskException("Task creation failed.", "Reminder must be shorter than the due date");
+            throw new TaskException("Task_creation_failed.", "Reminder must be shorter than the due date");
         }
-        
+
         await _taskRepository.AddAsync(TaskMapper.MapToAddTask(taskDto));
     }
 

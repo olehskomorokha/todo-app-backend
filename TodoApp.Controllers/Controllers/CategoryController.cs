@@ -37,7 +37,7 @@ public class CategoryController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateAsync(int id, UpdateCategoryDto categoryDto)
     {
-        await _categoryService.UpdateAsync(id,  categoryDto);
+        await _categoryService.UpdateAsync(id, categoryDto);
         return Ok();
     }
 }
