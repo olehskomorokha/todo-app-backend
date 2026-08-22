@@ -27,6 +27,9 @@ builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+
 var app = builder.Build();
 
 app.MapControllers();
